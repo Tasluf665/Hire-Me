@@ -21,7 +21,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.tasluf.hireme"
     },
     "web": {
       "favicon": "./assets/favicon.png",
@@ -40,6 +41,12 @@
           ]
         }
       ]
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "f1008b40-37c7-47ba-87c4-0613a7d30b00"
+      }
+    }
   }
 }

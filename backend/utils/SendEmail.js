@@ -3,6 +3,8 @@ const config = require("config");
 const jwt = require("jsonwebtoken");
 
 const sendEmail = async (email, subject, message) => {
+  console.log("EMAIL_USER", config.get("EMAIL_USER"));
+  console.log("EMAIL_APP_PASSWORD", config.get("EMAIL_APP_PASSWORD"));
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {

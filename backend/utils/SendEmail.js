@@ -3,14 +3,17 @@ const config = require("config");
 const jwt = require("jsonwebtoken");
 
 const sendEmail = async (email, subject, message) => {
-  console.log("EMAIL_USER", config.get("EMAIL_USER"));
-  console.log("EMAIL_APP_PASSWORD", config.get("EMAIL_APP_PASSWORD"));
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // Must be false for port 587
     auth: {
       user: config.get("EMAIL_USER"),
       pass: config.get("EMAIL_APP_PASSWORD"),
     },
+    tls: {
+      rejectUnauthorized: false // Helps bypass some network restrictions
+    }
   });
 
   await transporter.sendMail({

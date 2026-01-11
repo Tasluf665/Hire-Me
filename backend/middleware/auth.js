@@ -14,7 +14,7 @@ function auth(req, res, next) {
 
   try {
     // Verify the token using the configured JWT private key.
-    const decoded = jwt.verify(token, config.get("jwtPrivateKey"));
+    const decoded = jwt.verify(token, config.get("JWT_PRIVATE_KEY"));
 
     // Attach the decoded user information to the request object for further processing.
     req.user = decoded;

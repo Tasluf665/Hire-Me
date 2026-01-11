@@ -1,4 +1,11 @@
 {
-    "jwtPrivateKey": "",
-    "MONGODB_URL": ""
+    "JWT_PRIVATE_KEY": "",
+    "MONGODB_URL": "",
+    "JWT_EXPIRATION_TIME": "",
+    "JWT_REFRESH_TOKEN_PRIVATE_KEY": "",
+    "JWT_REFRESH_TOKEN_EXPIRATION_TIME": "",
+    "EMAIL_USER": "",
+    "EMAIL_APP_PASSWORD": "",
+    "EMAIL_TOKEN_EXPIRATION_TIME": "",
+    "URL": ""
 }

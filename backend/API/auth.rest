@@ -1,0 +1,34 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTY2YzBiNGVkOGU1ZmM0N2E3MTNjZTciLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3NjgzNDQwNzEsImV4cCI6MTc2ODM0NzY3MX0.YiHiWZOzNZLlvzxH6WfTTCBJ8b4igoJaeUgaSPma4Ro
+
+@refresh_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTY2YzBiNGVkOGU1ZmM0N2E3MTNjZTciLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3NjgzNDQwNzEsImV4cCI6MTc2ODM2NTY3MX0.4PKYRryrO61OvjLBxk3By8Ke7D-fAgQdn24N8LkolaM
+
+###
+
+POST http://localhost:3001/api/auth/
+Content-Type: application/json
+
+{
+    "email": "rhymemorshed665@gmail.com",
+    "password": "12345"
+}
+
+###
+
+POST http://localhost:3001/api/auth/newToken
+refresh-token: {{refresh_token}}
+
+
+
+###
+
+POST http://localhost:3001/api/auth/forgot-password
+Content-Type: application/json
+
+{
+    "email": "rhymemorshed665@gmail.com"
+}
+
+
+###
+
+GET http://localhost:3001/api/auth/google

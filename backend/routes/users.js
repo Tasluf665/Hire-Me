@@ -16,6 +16,7 @@ const { sendVerificationEmail } = require("../utils/SendEmail");
 
 //For UserInfo
 // Define a route for handling GET requests to "/me"
+//Checked and working
 router.get(
   "/me",
   // Use the "auth" middleware to authenticate the request
@@ -41,6 +42,7 @@ router.get(
 );
 
 // Define a route for handling PATCH requests to "/update"
+//Checked and working
 router.patch(
   "/update",
   // Use the "auth" middleware to authenticate the request
@@ -87,6 +89,7 @@ router.patch(
 
 //For Notifications
 // Define a route for handling GET requests to "/notifications"
+//Checked and working
 router.get(
   "/notifications",
   // Use the "auth" middleware to authenticate the request
@@ -111,6 +114,7 @@ router.get(
 
 //For User Order
 // Define a route for handling GET requests to "/orders"
+//Checked and working
 router.get(
   "/orders",
   // Use the "auth" middleware to authenticate the request
@@ -164,6 +168,7 @@ router.get(
 
 //For User Address
 // Define a route for handling POST requests to "/userAddress"
+//Checked and working
 router.post(
   "/userAddress",
   // Use the "auth" middleware to authenticate the request
@@ -219,6 +224,7 @@ router.post(
 );
 
 // Define a route for handling PATCH requests to "/userAddress/:addressId"
+//Checked and working
 router.patch(
   "/userAddress/:addressId",
   // Use the "auth" middleware to authenticate the request
@@ -272,6 +278,7 @@ router.patch(
 );
 
 // Define a route for handling DELETE requests to "/userAddress/:addressId"
+//Checked and working
 router.delete(
   "/userAddress/:addressId",
   // Use the "auth" middleware to authenticate the request
@@ -279,6 +286,7 @@ router.delete(
   // Use an asynchronous middleware to handle the request
   asyncMiddleware(async (req, res) => {
     // Find the user by their user ID
+    console.log("Request send for address delete");
     let user = await User.findById(req.user._id);
 
     // If no user is found, return a 400 Bad Request error response
@@ -291,7 +299,7 @@ router.delete(
     if (!address) return res.status(400).send({ error: "Address not found" });
 
     // Remove the address from the user's "addresses" array
-    address.remove();
+    user.addressess.pull(req.params.addressId);
 
     // Save the updated user to the database
     await user.save();
@@ -309,6 +317,7 @@ router.delete(
 
 //For Authentication
 // Define a route for handling POST requests to create a new user
+//Checked and working
 router.post("/", async (req, res) => {
   // Validate the request body using the "validateUser" function
   const { error } = validateUser(req.body);
@@ -344,6 +353,7 @@ router.post("/", async (req, res) => {
 });
 
 // Define a route for handling GET requests to "/authentication/:token"
+//Checked and working
 router.get(
   "/authentication/:token",
   // Use an asynchronous middleware to handle the request
@@ -447,6 +457,7 @@ router.post("/google", async (req, res) => {
 
 //For user Number
 // Define a route for handling GET requests to fetch the total number of verified non-admin users
+//Checked and working
 router.get(
   "/userNumber",
   // Use the "auth" and "admin" middlewares to authenticate and authorize the request

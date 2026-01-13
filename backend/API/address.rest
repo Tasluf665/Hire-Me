@@ -1,0 +1,43 @@
+//Every time I have to refresh these tokens because they will be exparied after a period of time. To get new one I need to go to auth.rest and generate new tokens.
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTY2YzBiNGVkOGU1ZmM0N2E3MTNjZTciLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3NjgzNDQwNzEsImV4cCI6MTc2ODM0NzY3MX0.YiHiWZOzNZLlvzxH6WfTTCBJ8b4igoJaeUgaSPma4Ro
+
+###
+
+POST http://localhost:3001/api/address
+x-auth-token: {{token}}
+Content-Type: application/json
+
+
+{
+    "id": "R80300535",
+    "name": "Anawara",
+    "nameLocal": "Anawara",
+    "parentId": "R3824588",
+    "displayName": "Anawara"
+}
+
+###
+
+PUT http://localhost:3001/api/address/6966d0a21830ac1affece749
+x-auth-token: {{token}}
+Content-Type: application/json
+
+
+{
+    "id": "R80300535",
+    "name": "Anawa",
+    "nameLocal": "Anawara",
+    "parentId": "R3824588",
+    "displayName": "Anawara"
+}
+
+###
+
+DELETE http://localhost:3001/api/address/6966d0a21830ac1affece749
+x-auth-token: {{token}}
+Content-Type: application/json
+
+###
+
+GET http://localhost:3001/api/address?id=R3824588
+x-auth-token: {{token}}

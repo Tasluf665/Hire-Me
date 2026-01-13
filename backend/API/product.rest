@@ -1,0 +1,64 @@
+//Every time I have to refresh these tokens because they will be exparied after a period of time. To get new one I need to go to auth.rest and generate new tokens.
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmY0YjAxNjQxODE4ZjgzNmRkYWVjYjMiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTQwNDYwMDgsImV4cCI6MTY5NDA4OTIwOH0.0Q5U_DRjUlPLwBqGiEMu_x12kzvOR1X-MqePMnu3GH8
+
+###
+
+POST http://localhost:3001/api/products
+x-auth-token: {{token}}
+Content-Type: application/json
+
+
+{
+    "name": "Fan",
+    "iconName": "fan",
+    "brandName": "Walton"
+}
+
+
+###
+
+PATCH http://localhost:3001/api/products/addBrands/62f32a00657316510269a95f
+x-auth-token: {{token}}
+Content-Type: application/json
+
+
+{
+    "brandName": "Oppo"
+}
+
+###
+
+PATCH http://localhost:3001/api/products/addModels/62f32a00657316510269a95f/62f32a00657316510269a960
+x-auth-token: {{token}}
+Content-Type: application/json
+
+
+{
+    "modelName": "Demo"
+}
+
+###
+
+PATCH http://localhost:3001/api/products/addModelsArray/62f32a00657316510269a95f/62f32a00657316510269a960
+x-auth-token: {{token}}
+Content-Type: application/json
+
+
+{
+    "modelName": ["Demo1", "Demo2"]
+}
+
+###
+
+GET http://localhost:3001/api/products
+x-auth-token: {{token}}
+
+###
+
+GET http://localhost:3001/api/products/brands/62f32a00657316510269a95f
+x-auth-token: {{token}}
+
+###
+
+GET http://localhost:3001/api/products/models/62f32a00657316510269a95f/62f32a00657316510269a960
+x-auth-token: {{token}}

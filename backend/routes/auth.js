@@ -12,7 +12,7 @@ const {
   sendResetPasswordEmail,
 } = require("../utils/SendEmail");
 
-
+//Checked and working
 router.post(
   "/forgot-password",
   asyncMiddleware(async (req, res) => {
@@ -39,6 +39,7 @@ router.post(
   })
 );
 
+//Checked and working
 router.get(
   "/reset-password/:token",
   asyncMiddleware(async (req, res) => {
@@ -53,7 +54,7 @@ router.get(
 
     try {
       // Verify the provided reset token using the JWT secret.
-      jwt.verify(token, config.get("jwtPrivateKey"));
+      jwt.verify(token, config.get("JWT_PRIVATE_KEY"));
 
       // Render the 'ResetPasswordForm' view with the provided reset token.
       let BackEndURL = config.get("URL");
@@ -66,6 +67,7 @@ router.get(
   })
 );
 
+//Checked and working
 router.post(
   "/reset-password/:token",
   asyncMiddleware(async (req, res) => {
@@ -86,7 +88,7 @@ router.post(
 
     try {
       // Verify the provided reset token using the JWT secret.
-      const decoded = jwt.verify(token, config.get("jwtPrivateKey"));
+      const decoded = jwt.verify(token, config.get("JWT_PRIVATE_KEY"));
 
       // Find the user by their ID in the database.
       const user = await User.findById(decoded._id);
@@ -117,6 +119,7 @@ router.post(
  * @param {object} req.body - The request body containing the user's email and password for authentication.
  * @returns {object} - A JSON response indicating the success of the login and providing the user's access token.
  */
+//Checked and working
 router.post(
   "/",
   asyncMiddleware(async (req, res) => {
@@ -176,15 +179,7 @@ router.post(
   })
 );
 
-/**
- * Route handler for generating a new access token using a refresh token.
- *
- * This route handles a POST request to generate a new access token using a provided refresh token.
- *
- * @route POST /api/auth/newToken
- * @param {string} req.header("refresh-token") - The refresh token used to generate a new access token.
- * @returns {object} - A JSON response indicating the success of token generation and providing the new access token.
- */
+//Checked and working
 router.post(
   "/newToken",
   asyncMiddleware(async (req, res) => {
@@ -201,7 +196,7 @@ router.post(
       // Verify the provided refresh token using the configured private key.
       const decoded = jwt.verify(
         refreshToken,
-        config.get("REPAIR_JWT_REFRESH_TOKEN_PRIVATE_KEY")
+        config.get("JWT_REFRESH_TOKEN_PRIVATE_KEY")
       );
 
       // Find the user by their ID in the database.

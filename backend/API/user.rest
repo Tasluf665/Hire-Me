@@ -1,0 +1,88 @@
+//Every time I have to refresh these tokens because they will be exparied after a period of time. To get new one I need to go to auth.rest and generate new tokens.
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTY2YzBiNGVkOGU1ZmM0N2E3MTNjZTciLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3NjgzNDQwNzEsImV4cCI6MTc2ODM0NzY3MX0.YiHiWZOzNZLlvzxH6WfTTCBJ8b4igoJaeUgaSPma4Ro
+
+###
+
+GET http://localhost:3001/api/users/me
+x-auth-token: {{token}}
+
+###
+PATCH http://localhost:3001/api/users/update
+x-auth-token: {{token}}
+Content-Type: application/json
+
+{
+    "name": "Tasluf Morhshed"
+}
+
+###
+
+GET http://localhost:3001/api/users/orders
+x-auth-token: {{token}}
+
+###
+
+GET http://localhost:3001/api/users/orders/64f9313f51ad18ca1ca62192
+x-auth-token: {{token}}
+
+###
+
+POST  http://localhost:3001/api/users/userAddress
+x-auth-token: {{token}}
+Content-Type: application/json
+
+{
+    "address": "Road 2/3",
+    "area": "Khulna",
+    "city": "Barishal",
+    "name": "Raida",
+    "phone": "01956140406",
+    "region": "Barishal",
+    "office": true,
+    "defaultAddress": false
+}
+
+###
+
+PATCH  http://localhost:3001/api/users/userAddress/6966c72225f3c087ba1def48
+x-auth-token: {{token}}
+Content-Type: application/json
+
+{
+    "address": "Road 4/3",
+    "area": "Khulna",
+    "city": "Barishal",
+    "name": "Tasluf",
+    "phone": "01956140407",
+    "region": "Barishal",
+    "office": false,
+    "defaultAddress": true
+}
+
+###
+
+DELETE  http://localhost:3001/api/users/userAddress/6966c6e158fce9105ec5b828
+x-auth-token: {{token}}
+
+###
+
+POST http://localhost:3001/api/users/
+Content-Type: application/json
+
+{
+    "name": "Tasluf Morhshed",
+    "email": "rhymemorshed665@gmail.com",
+    "password": "123456"
+}
+
+###
+
+GET http://localhost:3001/api/users/notifications
+x-auth-token: {{token}}
+
+###
+
+GET http://localhost:3001/api/users/userNumber
+x-auth-token: {{token}}
+
+

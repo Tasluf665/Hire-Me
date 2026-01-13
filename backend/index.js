@@ -15,6 +15,8 @@ const cors = require("cors");
 
 const error = require("./middleware/error");
 const users = require("./routes/users");
+const auth = require("./routes/auth");
+const address = require("./routes/address");
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -39,6 +41,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({ origin: "*" }));
 
 app.use("/api/users", users);
+app.use("/api/auth", auth);
+app.use("/api/address", address);
 
 app.use(error);
 

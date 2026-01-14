@@ -138,6 +138,7 @@ router.get(
 );
 
 // Define a route for handling GET requests to "/orders/:orderId"
+//Checked and working
 router.get(
   "/orders/:orderId",
   // Use the "auth" middleware to authenticate the request

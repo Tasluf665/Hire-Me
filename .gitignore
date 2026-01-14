@@ -11,7 +11,8 @@ node_modules/
 
 # Environment Variables
 .env
-.env.*
+.env.development
+.env.production
 
 # Logs
 logs/

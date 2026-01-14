@@ -1,5 +1,5 @@
 //Every time I have to refresh these tokens because they will be exparied after a period of time. To get new one I need to go to auth.rest and generate new tokens.
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTY2YzBiNGVkOGU1ZmM0N2E3MTNjZTciLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3NjgzNDQwNzEsImV4cCI6MTc2ODM0NzY3MX0.YiHiWZOzNZLlvzxH6WfTTCBJ8b4igoJaeUgaSPma4Ro
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTY2YzBiNGVkOGU1ZmM0N2E3MTNjZTciLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3NjgzNTMzMDcsImV4cCI6MTc2ODM1NjkwN30.6bWpvRBc4-lDLGc48BzMH2aO_0RvpZq9PuSclys01JM
 
 ###
 
@@ -22,7 +22,7 @@ x-auth-token: {{token}}
 
 ###
 
-GET http://localhost:3001/api/users/orders/64f9313f51ad18ca1ca62192
+GET http://localhost:3001/api/users/orders/6966f1813ba5a71ff2f60913
 x-auth-token: {{token}}
 
 ###

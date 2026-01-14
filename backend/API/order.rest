@@ -1,5 +1,5 @@
 //Every time I have to refresh these tokens because they will be exparied after a period of time. To get new one I need to go to auth.rest and generate new tokens.
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmY0YjAxNjQxODE4ZjgzNmRkYWVjYjMiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTQwNDYwMDgsImV4cCI6MTY5NDA4OTIwOH0.0Q5U_DRjUlPLwBqGiEMu_x12kzvOR1X-MqePMnu3GH8
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTY2YzBiNGVkOGU1ZmM0N2E3MTNjZTciLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3NjgzNTMzMDcsImV4cCI6MTc2ODM1NjkwN30.6bWpvRBc4-lDLGc48BzMH2aO_0RvpZq9PuSclys01JM
 
 
 GET http://localhost:3001/api/orders?pageNumber=1&pageSize=10
@@ -32,7 +32,7 @@ x-auth-token: {{token}}
 
 ###
 
-GET http://localhost:3001/api/orders/62f6181007449a942bff0242
+GET http://localhost:3001/api/orders/6966f1813ba5a71ff2f60913
 x-auth-token: {{token}}
 
 ###
@@ -48,9 +48,9 @@ Content-Type: application/json
     "arrivalDate": "7/31/2022, 1:06:35 PM",
     "arrivalTime": "7/31/2022, 1:06:35 PM",
     "category": "Repairing",
-    "categoryType": "fridge",
+    "categoryType": "fan",
     "brand": "Walton",
-    "model": "W32D120HG3 (813mm) HD ANDROID TV",
+    "model": "Demo",
     "problem": "Water Dropping",
     "note": "Urgent",
     "statusDetails": "Your order is pending",
@@ -59,7 +59,7 @@ Content-Type: application/json
 
 ###
 
-PATCH http://localhost:3001/api/orders/accept/64f936f418637ecb9a3758e9
+PATCH http://localhost:3001/api/orders/accept/6966f1813ba5a71ff2f60913
 x-auth-token: {{token}}
 Content-Type: application/json
 
@@ -71,19 +71,19 @@ Content-Type: application/json
 
 ###
 
-PATCH http://localhost:3001/api/orders/assigned/64f936f418637ecb9a3758e9
+PATCH http://localhost:3001/api/orders/assigned/6966f1813ba5a71ff2f60913
 x-auth-token: {{token}}
 Content-Type: application/json
 
 {
-    "technicianId": "62e87f8de5f8d4bf82a903f8",
+    "technicianId": "6966dc6348b2cc1ca29625d6",
     "statusDetails": "Technician Assigned has been assigned to your order",
     "statusState": "Technician Assigned"
 }
 
 ###
 
-PATCH http://localhost:3001/api/orders/repaired/64f936f418637ecb9a3758e9
+PATCH http://localhost:3001/api/orders/repaired/6966ee3685f27867c023f650
 x-auth-token: {{token}}
 Content-Type: application/json
 

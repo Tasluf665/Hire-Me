@@ -2,7 +2,7 @@
 
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTY2YzBiNGVkOGU1ZmM0N2E3MTNjZTciLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3NjgzNDQwNzEsImV4cCI6MTc2ODM0NzY3MX0.YiHiWZOzNZLlvzxH6WfTTCBJ8b4igoJaeUgaSPma4Ro
 
-GET http://localhost:3001/api/agents?pageNumber=1&pageSize=10&name=t
+GET http://localhost:3001/api/agents?pageNumber=1&pageSize=10&name=H
 x-auth-token: {{token}}
 
 ###
@@ -12,7 +12,7 @@ x-auth-token: {{token}}
 
 ###
 
-GET http://localhost:3001/api/agents/62eb2bdf4f51be3516a0bc9b
+GET http://localhost:3001/api/agents/6966d4944add0fe0fdfa1a96
 x-auth-token: {{token}}
 
 ###
@@ -23,8 +23,8 @@ Content-Type: application/json
 
 
 {
-    "name": "Nishat",
-    "email": "Nishat@gmail.com",
+    "name": "Harun",
+    "email": "Harun@gmail.com",
     "phone": "019232442113",
     "whatsappNumber": "019232442113",
     "region": "Dhaka",
@@ -35,15 +35,15 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:3001/api/agents/64f776c6c3001aadf4f8c953
+PUT http://localhost:3001/api/agents/6966d4944add0fe0fdfa1a96
 x-auth-token: {{token}}
 Content-Type: application/json
 
 
 {
-    "name": "Nisha",
-    "email": "Nishat@gmail.com",
-    "phone": "019232442113",
+    "name": "Harun",
+    "email": "Harun@gmail.com",
+    "phone": "019232442114",
     "whatsappNumber": "019232442113",
     "region": "Dhaka",
     "city": "Munshiganj - Town",
@@ -53,6 +53,6 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3001/api/agents/64f776c6c3001aadf4f8c953
+DELETE http://localhost:3001/api/agents/6966d4944add0fe0fdfa1a96
 x-auth-token: {{token}}
 Content-Type: application/json

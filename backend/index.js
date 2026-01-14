@@ -17,6 +17,11 @@ const error = require("./middleware/error");
 const users = require("./routes/users");
 const auth = require("./routes/auth");
 const address = require("./routes/address");
+const agents = require("./routes/agents");
+const technicians = require("./routes/technicians");
+const products = require("./routes/products");
+const orders = require("./routes/orders");
+const payments = require("./routes/payments");
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -43,6 +48,11 @@ app.use(cors({ origin: "*" }));
 app.use("/api/users", users);
 app.use("/api/auth", auth);
 app.use("/api/address", address);
+app.use("/api/agents", agents);
+app.use("/api/technicians", technicians);
+app.use("/api/products", products);
+app.use("/api/orders", orders);
+app.use("/api/payments", payments);
 
 app.use(error);
 

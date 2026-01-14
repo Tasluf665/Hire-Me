@@ -3,7 +3,7 @@ const router = express.Router();
 const auth = require("../middleware/auth");
 const { Order, Payment, Status } = require("../models/order");
 const { Notification, User } = require("../models/user");
-const fetch = require("node-fetch");
+const axios = require("axios");
 const asyncMiddleware = require("../middleware/async");
 const config = require("config");
 
@@ -14,24 +14,25 @@ const {
 
 // Define a route for handling GET requests with an order ID parameter
 //Source: Bohubrihi NodeJs -> 8. Project - E-Commerce Site with Payment Gateway (SSLCommerz) -> 8. Payment Gateway (SSLCommerz)
+//Chekcked and working
 router.get("/:orderId", auth, asyncMiddleware(initPayment));
 
 // Define a route for handling POST requests when a payment is successful
 //Source: Bohubrihi NodeJs -> 8. Project - E-Commerce Site with Payment Gateway (SSLCommerz) -> 8. Payment Gateway (SSLCommerz)
+//Chekcked and working
 router.post(
   "/paymentSuccess",
   // Use an asynchronous middleware to handle the request
   asyncMiddleware(async (req, res) => {
     // Send a request to the SSLCommerz validator API to validate the transaction
-    let response = await fetch(
-      `https://sandbox.sslcommerz.com/validator/api/validationserverAPI.php?val_id=${
-        req.body.val_id
+    let response = await axios.get(
+      `https://sandbox.sslcommerz.com/validator/api/validationserverAPI.php?val_id=${req.body.val_id
       }&store_id=${config.get("SSLCOMMERZ_STORE_ID")}&store_passwd=${config.get(
         "SSLCOMMERZ_STORE_PASSWD"
       )}&format=json`
     );
     // Parse the response JSON data
-    let result = await response.json();
+    let result = response.data;
 
     // If the transaction status is not "VALID," return a 400 Bad Request error
     if (!result.status === "VALID")
@@ -96,12 +97,14 @@ router.post(
 );
 
 // Define a route for handling POST requests when a payment is canceled
+//Checked and working
 router.post("/paymentCancel", (req, res) => {
   // Render a "PaymentCancel" view to inform the user about the payment cancellation
   res.render("PaymentCancel");
 });
 
 // Define a route for handling POST requests when a payment fails
+//Checked and working
 router.post("/paymentFail", (req, res) => {
   // Render a "PaymentFail" view to inform the user about the payment failure
   res.render("PaymentFail");

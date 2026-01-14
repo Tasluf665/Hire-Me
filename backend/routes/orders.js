@@ -24,6 +24,7 @@ const {
  * @param {string} req.query.name - (Optional) A search string to filter orders by name (case-insensitive).
  * @returns {object} - A JSON response containing the paginated orders, their count, and a success message.
  */
+//Checked and working
 router.get(
   "/",
   [auth, admin],
@@ -38,53 +39,53 @@ router.get(
     const search = req.query.name ? new RegExp(req.query.name, "i") : /.*/;
 
     // Count the total number of orders matching the search criteria.
-    const count = await Order.find({ phone: search }).count();
+    const count = await Order.find({ phone: search }).countDocuments();
 
     // Find all orders matching the search criteria.
-    await Order.find({ phone: search }).exec(function (err, instances) {
-      // Separate orders into pending and non-pending categories.
-      const allPendingOrders = instances.filter(
-        (item) => item.status[item.status.length - 1].statusState === "Pending"
-      );
+    const instances = await Order.find({ phone: search });
+    // Separate orders into pending and non-pending categories.
+    const allPendingOrders = instances.filter(
+      (item) => item.status[item.status.length - 1].statusState === "Pending"
+    );
 
-      const otherOrders = instances.filter(
-        (item) => item.status[item.status.length - 1].statusState !== "Pending"
-      );
+    const otherOrders = instances.filter(
+      (item) => item.status[item.status.length - 1].statusState !== "Pending"
+    );
 
-      // Combine pending and non-pending orders, ensuring pending orders appear first.
-      let sortedOrders = [...allPendingOrders, ...otherOrders];
+    // Combine pending and non-pending orders, ensuring pending orders appear first.
+    let sortedOrders = [...allPendingOrders, ...otherOrders];
 
-      // Apply pagination to the sorted orders.
-      //This filtering function will filter all the orders. Let say I have 27 orders in database. if pageNumber = 1 then sortedOrders.lenght = 27. if pageNumber = 2 then sortedOrders.lenght = 17. if pageNumber = 3 then sortedOrders.lenght = 7.
-      sortedOrders = sortedOrders.filter((item, index) => {
-        if (index > (pageNumber - 1) * pageSize - 1) {
-          return true;
-        }
-      });
-
-      //Then only take 10 orders. if pageNumber = 2 then sortedOrders.lenght = 17. But I have to select only 10 orders bcz pageSize let say 10.
-      sortedOrders = sortedOrders.filter((item, index) => {
-        if (index < pageSize) {
-          return true;
-        }
-      });
-
-      // Add an 'id' field to each order based on the current page and index.
-      //This maping is used to solve the number problem in Admin panel after I filter data.
-      //For example search "tas" will show 10 number order because that agent is store in the 10th place of the databse so to solve this I have reassign the id number start from 1 so that date will show serially.
-      sortedOrders = sortedOrders.map((item, index) => {
-        item._doc.id = (pageNumber - 1) * pageSize + index + 1;
-
-        return item._doc;
-      });
-
-      // Send a success response with the paginated orders, their count, and a success message.
-      res.status(200).send({
-        success: "Orders are fetched successfully",
-        data: sortedOrders,
-        count,
-      });
+    // Apply pagination to the sorted orders.
+    //This filtering function will filter all the orders. Let say I have 27 orders in database. if pageNumber = 1 then sortedOrders.lenght = 27. if pageNumber = 2 then sortedOrders.lenght = 17. if pageNumber = 3 then sortedOrders.lenght = 7.
+    sortedOrders = sortedOrders.filter((item, index) => {
+      if (index > (pageNumber - 1) * pageSize - 1) {
+        return true;
+      }
     });
+
+    //Then only take 10 orders. if pageNumber = 2 then sortedOrders.lenght = 17. But I have to select only 10 orders bcz pageSize let say 10.
+    sortedOrders = sortedOrders.filter((item, index) => {
+      if (index < pageSize) {
+        return true;
+      }
+    });
+
+    // Add an 'id' field to each order based on the current page and index.
+    //This maping is used to solve the number problem in Admin panel after I filter data.
+    //For example search "tas" will show 10 number order because that agent is store in the 10th place of the databse so to solve this I have reassign the id number start from 1 so that date will show serially.
+    sortedOrders = sortedOrders.map((item, index) => {
+      item._doc.id = (pageNumber - 1) * pageSize + index + 1;
+
+      return item._doc;
+    });
+
+    // Send a success response with the paginated orders, their count, and a success message.
+    res.status(200).send({
+      success: "Orders are fetched successfully",
+      data: sortedOrders,
+      count,
+    });
+
   })
 );
 
@@ -96,6 +97,7 @@ router.get(
  * @route GET /api/orders/totalProfit
  * @returns {object} - A JSON response containing the total profit and a success message.
  */
+//Checked and working
 router.get(
   "/totalProfit",
   [auth, admin],
@@ -134,6 +136,7 @@ router.get(
  * @throws {403} If the user doesn't have admin privileges.
  * @throws {500} If there's a server error while processing the request.
  */
+//Checked and working
 router.get(
   "/weeklySells",
   [auth, admin],
@@ -171,6 +174,7 @@ router.get(
  * @throws {403} If the user doesn't have admin privileges.
  * @throws {500} If there's a server error while processing the request.
  */
+//Checked and working
 router.get(
   "/sellsInMonth",
   [auth, admin],
@@ -206,6 +210,7 @@ router.get(
  * @route GET /api/orders/pendingOrder
  * @returns {object} - A JSON response containing the count of pending orders and a success message.
  */
+//Checked and working
 router.get(
   "/pendingOrder",
   [auth, admin],
@@ -242,6 +247,7 @@ router.get(
  * @route GET /api/orders/countOrderCategory
  * @returns {object} - A JSON response containing the count of orders categorized by type and a success message.
  */
+//Checked and working
 router.get(
   "/countOrderCategory",
   [auth, admin],
@@ -296,6 +302,7 @@ router.get(
  * @param {string} id - The unique identifier of the order to retrieve.
  * @returns {object} - A JSON response containing the order details and a success message.
  */
+//Checked and working
 router.get(
   "/:id",
   auth,
@@ -309,6 +316,7 @@ router.get(
         .status(404)
         .send({ error: "The order with the given ID was not found" });
 
+
     // Find the associated product for the order's category.
     //As brand and model id is store in the order. brand: '62f32a00657316510269a960', model: '62f3479a6c264d3b95fcf138', So I have to find the actual names.
     const product = await Product.findOne({
@@ -317,12 +325,12 @@ router.get(
 
     // Find the brand and model names for the order.
     const brand = product.brands.find(
-      (item) => item._id.toString() === order.brand
+      (item) => item.brandName.toString() === order.brand
     );
     order.brand = brand.brandName;
 
     const model = brand.models.find(
-      (item) => item._id.toString() === order.model
+      (item) => item.modelName.toString() === order.model
     );
     order.model = model.modelName;
 
@@ -342,6 +350,7 @@ router.get(
  * @route POST /api/orders
  * @returns {object} - A JSON response containing the created order details and a success message.
  */
+//Checked and working
 router.post(
   "/",
   auth,
@@ -424,6 +433,7 @@ router.post(
  * @param {string} orderId - The ID of the order to be accepted.
  * @returns {object} - A JSON response containing the updated order details and a success message.
  */
+//Checked and working
 router.patch(
   "/accept/:orderId",
   [auth, admin],
@@ -495,6 +505,7 @@ router.patch(
  * @param {string} orderId - The ID of the order to be assigned.
  * @returns {object} - A JSON response containing the updated order details and a success message.
  */
+//Checked and working
 router.patch(
   "/assigned/:orderId",
   [auth, admin],
@@ -565,6 +576,7 @@ router.patch(
  * @param {string} orderId - The ID of the order to be marked as repaired.
  * @returns {object} - A JSON response containing the updated order details and a success message.
  */
+//Checked and working
 router.patch(
   "/repaired/:orderId",
   [auth, admin],
@@ -651,7 +663,7 @@ function validateOrderAccept(order) {
  */
 function validateOrderAssigned(order) {
   const schema = Joi.object({
-    technicianId: Joi.objectId().required(),
+    technicianId: Joi.string().hex().length(24).required(),
     statusDetails: Joi.string().min(1).max(255).required(),
     statusState: Joi.string().min(1).max(50).required(),
   });

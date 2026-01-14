@@ -12,6 +12,7 @@ const admin = require("../middleware/admin");
  * This route fetches a list of all available products, excluding brand details and version information.
  *
  */
+//Checked and working
 router.get(
   "/",
   auth,
@@ -31,6 +32,7 @@ router.get(
 );
 
 // Define a route for handling GET requests to "/brands/:id"
+//Checked and working
 router.get(
   "/brands/:id",
   // Use the "auth" middleware to authenticate the request
@@ -61,6 +63,7 @@ router.get(
 );
 
 // Define a route for handling GET requests to "/models/:id/:brandId"
+//Checked and working
 router.get(
   "/models/:id/:brandId",
   // Use the "auth" middleware to authenticate the request
@@ -89,6 +92,7 @@ router.get(
 );
 
 // Define a route for handling POST requests to "/"
+//Checked and working
 router.post(
   "/",
   // Use the "auth" and "admin" middlewares to authenticate and check admin privileges
@@ -122,6 +126,7 @@ router.post(
 );
 
 // Define a route for handling PATCH requests to "/addBrands/:id"
+//Checked and working
 router.patch(
   "/addBrands/:id",
   // Use the "auth" and "admin" middlewares to authenticate and check admin privileges
@@ -157,6 +162,7 @@ router.patch(
 );
 
 // Define a route for handling PATCH requests to "/addModels/:id/:brandId"
+//Checked and working
 router.patch(
   "/addModels/:id/:brandId",
   // Use the "auth" and "admin" middlewares to authenticate and check admin privileges
@@ -198,6 +204,7 @@ router.patch(
 );
 
 // Define a route for handling PATCH requests to "/addModelsArray/:id/:brandId"
+//Checked and working
 router.patch("/addModelsArray/:id/:brandId", auth, async (req, res) => {
   // Find a product by its ID in the database
   const product = await Product.findById(req.params.id);

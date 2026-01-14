@@ -1,5 +1,5 @@
 //Every time I have to refresh these tokens because they will be exparied after a period of time. To get new one I need to go to auth.rest and generate new tokens.
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmY0YjAxNjQxODE4ZjgzNmRkYWVjYjMiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTQwNDYwMDgsImV4cCI6MTY5NDA4OTIwOH0.0Q5U_DRjUlPLwBqGiEMu_x12kzvOR1X-MqePMnu3GH8
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTY2YzBiNGVkOGU1ZmM0N2E3MTNjZTciLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3NjgzNDgwNDksImV4cCI6MTc2ODM1MTY0OX0.hq8lwStrKpGfRsya6c8gPtr5soZ3DcwwMM1WjIfOOmU
 
 ###
 
@@ -17,7 +17,7 @@ Content-Type: application/json
 
 ###
 
-PATCH http://localhost:3001/api/products/addBrands/62f32a00657316510269a95f
+PATCH http://localhost:3001/api/products/addBrands/6966e0449210dfea3a8b9358
 x-auth-token: {{token}}
 Content-Type: application/json
 
@@ -28,7 +28,7 @@ Content-Type: application/json
 
 ###
 
-PATCH http://localhost:3001/api/products/addModels/62f32a00657316510269a95f/62f32a00657316510269a960
+PATCH http://localhost:3001/api/products/addModels/6966e0449210dfea3a8b9358/6966e0449210dfea3a8b9359
 x-auth-token: {{token}}
 Content-Type: application/json
 
@@ -39,7 +39,7 @@ Content-Type: application/json
 
 ###
 
-PATCH http://localhost:3001/api/products/addModelsArray/62f32a00657316510269a95f/62f32a00657316510269a960
+PATCH http://localhost:3001/api/products/addModelsArray/6966e0449210dfea3a8b9358/6966e07e9210dfea3a8b935d
 x-auth-token: {{token}}
 Content-Type: application/json
 
@@ -55,10 +55,10 @@ x-auth-token: {{token}}
 
 ###
 
-GET http://localhost:3001/api/products/brands/62f32a00657316510269a95f
+GET http://localhost:3001/api/products/brands/6966e0449210dfea3a8b9358
 x-auth-token: {{token}}
 
 ###
 
-GET http://localhost:3001/api/products/models/62f32a00657316510269a95f/62f32a00657316510269a960
+GET http://localhost:3001/api/products/models/6966e0449210dfea3a8b9358/6966e07e9210dfea3a8b935d
 x-auth-token: {{token}}

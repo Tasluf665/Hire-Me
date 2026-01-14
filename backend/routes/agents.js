@@ -16,6 +16,7 @@ const admin = require("../middleware/admin");
  * @middleware admin - Middleware to ensure the user has admin privileges.
  * @returns {object} - A JSON response containing the fetched agent data.
  */
+//Checked and working
 router.get(
   "/allAgents",
   [auth, admin], // Authentication and admin middleware
@@ -42,6 +43,7 @@ router.get(
  * @param {number} req.query.pageSize - Optional query parameter for specifying the page size (default: total count of agents).
  * @returns {object} - A JSON response containing the paginated and filtered agent data.
  */
+//Checked and working
 router.get(
   "/",
   [auth, admin], // Authentication and admin middleware
@@ -53,7 +55,7 @@ router.get(
 
     // Count the total number of agents that match the search criteria.
     //Source: Mosh -> NodeJS -> 7. CRUD -> 11- Regular.
-    const count = await Agent.find({ name: search }).count();
+    const count = await Agent.find({ name: search }).countDocuments();
 
     // Determine the page number and page size for pagination.
     const pageNumber = req.query.pageNumber ? req.query.pageNumber : 1;
@@ -95,6 +97,7 @@ router.get(
  * @param {string} req.params.id - The ID of the agent to be retrieved.
  * @returns {object} - A JSON response containing the fetched agent data.
  */
+//Checked and working
 router.get(
   "/:id",
   [auth, admin], // Authentication and admin middleware
@@ -128,6 +131,7 @@ router.get(
  * @param {object} req.body - The request body containing the agent data to be added.
  * @returns {object} - A JSON response indicating the success of the agent addition.
  */
+//Checked and working
 router.post(
   "/",
   [auth, admin], // Authentication and admin middleware
@@ -174,6 +178,7 @@ router.post(
  * @param {object} req.body - The request body containing the updated agent data.
  * @returns {object} - A JSON response indicating the success of the agent update.
  */
+//Checked and working
 router.put(
   "/:id",
   [auth, admin], // Authentication and admin middleware
@@ -226,12 +231,13 @@ router.put(
  * @param {string} req.params.id - The ID of the agent to be deleted.
  * @returns {object} - A JSON response indicating the success of the agent deletion.
  */
+//Checked and working
 router.delete(
   "/:id",
   [auth, admin], // Authentication and admin middleware
   asyncMiddleware(async (req, res) => {
     // Find and remove the agent document by ID, and return the removed document.
-    const agent = await Agent.findByIdAndRemove(req.params.id);
+    const agent = await Agent.findByIdAndDelete(req.params.id);
 
     // If no matching agent is found, return a 404 Not Found response.
     if (!agent)

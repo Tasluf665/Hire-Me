@@ -7,6 +7,7 @@ const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
 
 // Define a route for handling GET requests to "/allTechnicians"
+//Checked and working
 router.get(
   "/allTechnicians",
   // Use the "auth" and "admin" middlewares to authenticate and check admin privileges
@@ -25,6 +26,7 @@ router.get(
 );
 
 // Define a route for handling GET requests to "/:id"
+//Checked and working
 router.get(
   "/:id",
   // Use the "auth" middleware to authenticate the request
@@ -49,6 +51,7 @@ router.get(
 );
 
 // Define a route for handling GET requests to "/"
+//Checked and working
 router.get(
   "/",
   // Use the "auth" and "admin" middlewares to authenticate and check admin privileges
@@ -65,7 +68,7 @@ router.get(
     const search = req.query.name ? new RegExp(req.query.name, "i") : /.*/;
 
     // Count the total number of technicians matching the search criteria
-    const count = await Technician.find({ name: search }).count();
+    const count = await Technician.find({ name: search }).countDocuments();
 
     // Find and fetch a paginated list of technicians based on the search criteria
     let technicians = await Technician.find({ name: search })
@@ -92,6 +95,7 @@ router.get(
 );
 
 // Define a route for handling POST requests to "/"
+//Checked and working
 router.post(
   "/",
   // Use the "auth" and "admin" middlewares to authenticate and check admin privileges
@@ -141,6 +145,7 @@ router.post(
 );
 
 // Define a route for handling PUT requests to "/:id"
+//Checked and working
 router.put(
   "/:id",
   // Use the "auth" and "admin" middlewares to authenticate and check admin privileges
@@ -197,6 +202,7 @@ router.put(
 );
 
 // Define a route for handling DELETE requests to "/:id"
+//Checked and working
 router.delete(
   "/:id",
   // Use the "auth" and "admin" middlewares to authenticate and check admin privileges
@@ -204,7 +210,7 @@ router.delete(
   // Use an asynchronous middleware to handle the request
   asyncMiddleware(async (req, res) => {
     // Find and remove a technician by their ID from the database
-    const technician = await Technician.findByIdAndRemove(req.params.id);
+    const technician = await Technician.findByIdAndDelete(req.params.id);
 
     // If no technician is found, return a 404 Not Found error response
     if (!technician)

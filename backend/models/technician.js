@@ -78,7 +78,7 @@ const technicianSchema = new mongoose.Schema({
       },
     }),
 
-    require: true,
+    required: true,
   },
 });
 
@@ -102,7 +102,7 @@ function validateTechnician(technician) {
     city: Joi.string().min(1).max(255).required(),
     area: Joi.string().min(1).max(255).required(),
     location: Joi.string().min(1).max(255).required(),
-    agentId: Joi.objectId().required(), //Source: Mosh -> NodeJS course -> 9. Mongoose - Modeling -> 10 - Validating ObjectIDs
+    agentId: Joi.string().hex().length(24).required(), //Source: Mosh -> NodeJS course -> 9. Mongoose - Modeling -> 10 - Validating ObjectIDs
   });
 
   return schema.validate(technician);

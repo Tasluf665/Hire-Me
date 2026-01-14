@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+const axios = require("axios");
 
 //Send a push notification using Expo's API.
 module.exports.sendPushNotification = async (
@@ -13,16 +13,20 @@ module.exports.sendPushNotification = async (
   };
 
   try {
-    const response = await fetch("https://exp.host/--/api/v2/push/send", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(pushData),
-    });
+    // Send the notification using axios.post
+    // Source: https://docs.expo.dev/push-notifications/sending-notifications/#http-2-api
+    const response = await axios.post(
+      "https://exp.host/--/api/v2/push/send",
+      pushData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     // Check the response status and handle it as needed
-    if (response.ok) {
+    if (response.status === 200) {
       console.log("Push notification sent successfully.");
     } else {
       console.error("Failed to send push notification.");

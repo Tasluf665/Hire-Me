@@ -1,5 +1,5 @@
 //Every time I have to refresh these tokens because they will be exparied after a period of time. To get new one I need to go to auth.rest and generate new tokens.
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmY0YjAxNjQxODE4ZjgzNmRkYWVjYjMiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTQwNDYwMDgsImV4cCI6MTY5NDA4OTIwOH0.0Q5U_DRjUlPLwBqGiEMu_x12kzvOR1X-MqePMnu3GH8
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTY2YzBiNGVkOGU1ZmM0N2E3MTNjZTciLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3NjgzNDgwNDksImV4cCI6MTc2ODM1MTY0OX0.hq8lwStrKpGfRsya6c8gPtr5soZ3DcwwMM1WjIfOOmU
 
 ###
 
@@ -13,7 +13,7 @@ x-auth-token: {{token}}
 
 ###
 
-GET http://localhost:3001/api/technicians/62eb2c284f51be3516a0bcb0
+GET http://localhost:3001/api/technicians/6966dbe548b2cc1ca29625c9
 x-auth-token: {{token}}
 
 ###
@@ -26,18 +26,18 @@ Content-Type: application/json
 {
     "name": "Jakson",
     "email": "jakson@gmail.com",
-    "phone": "01956140407",
-    "whatsappNumber": "01956140407",
+    "phone": "01956140445",
+    "whatsappNumber": "01956140445",
     "region": "Dhaka",
     "city": "Munshiganj",
-    "area": "Mirkadim",
+    "area": "Hatkhola",
     "location": "Road 2/3",
-    "agentId": "62eb2bdf4f51be3516a0bc9b"
+    "agentId": "6966d4f14add0fe0fdfa1a9d"
 }
 
 ###
 
-PUT http://localhost:3001/api/technicians/64f948f60e6a0d5022bfebf1
+PUT http://localhost:3001/api/technicians/6966dbe548b2cc1ca29625c9
 x-auth-token: {{token}}
 Content-Type: application/json
 
@@ -45,17 +45,17 @@ Content-Type: application/json
 {
     "name": "Jakson2",
     "email": "jakson2@gmail.com",
-    "phone": "01956140407",
-    "whatsappNumber": "01956140407",
+    "phone": "01956140423",
+    "whatsappNumber": "01956140423",
     "region": "Dhaka",
     "city": "Munshiganj",
-    "area": "Mirkadim",
+    "area": "Hatkhola",
     "location": "Road 2/3",
-    "agentId": "62eb2bdf4f51be3516a0bc9b"
+    "agentId": "6966d4f14add0fe0fdfa1a9d"
 }
 
 ###
 
-DELETE http://localhost:3001/api/technicians/64f948f60e6a0d5022bfebf1
+DELETE http://localhost:3001/api/technicians/6966dbe548b2cc1ca29625c9
 x-auth-token: {{token}}
 Content-Type: application/json

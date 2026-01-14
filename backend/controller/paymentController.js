@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+const axios = require("axios");
 const FormData = require("form-data");
 const { User } = require("../models/user");
 const { Order } = require("../models/order");
@@ -81,15 +81,15 @@ module.exports.initPayment = async (req, res) => {
     }
 
     // Make a POST request to the SSLCommerz gateway for payment processing
-    const response = await fetch(
+    const response = await axios.post(
       "https://sandbox.sslcommerz.com/gwprocess/v4/api.php",
+      fdata,
       {
-        method: "POST",
-        body: fdata,
+        headers: fdata.getHeaders(),
       }
     );
     // Parse the response JSON data
-    const data = await response.json();
+    const data = response.data;
 
     // If the payment status is "SUCCESS," send the Gateway Page URL as a response
     if (data.status === "SUCCESS") {

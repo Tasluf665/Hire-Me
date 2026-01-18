@@ -11,18 +11,23 @@ import {
 } from "react-native";
 import { ScaledSheet } from "react-native-size-matters";
 import LottieView from "lottie-react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { authenticate, setLoading } from "../../store/authSlice";
+import { SignIn } from "../../services/authService";
 
 import SocialButton from "../../Components/SocialButton";
 import PasswordTextInput from "../../Components/PasswordTextInput";
 import CustomeFonts from "../../Constant/CustomeFonts";
 import Colors from "../../Constant/Colors";
-
+import CustomeActivityIndicator from "../../Components/CustomeActivityIndicator";
 
 export default function SignInScreen(props) {
     const [password, setPassword] = React.useState();
     const [email, setEmail] = React.useState();
+    const isLoading = useSelector((state) => state.auth.isLoading);
 
     const emailInput = React.useRef(null);
+    const dispatch = useDispatch();
 
     React.useEffect(() => {
         if (emailInput.current) {
@@ -31,20 +36,26 @@ export default function SignInScreen(props) {
     }, [emailInput]);
 
     const handleEmailSubmittion = async () => {
-        const authResult = await AuthHelper.EmailSignIn(email, password);
+        dispatch(setLoading(true));
+        const authResult = await SignIn(email, password);
+        dispatch(setLoading(false));
 
         if (authResult.error) {
             Alert.alert(authResult.error);
         } else {
             dispatch(
                 authenticate(
-                    authResult.data._id,
-                    authResult.data.token,
-                    authResult.data.refreshToken
+                    authResult.data.data._id,
+                    authResult.data.data.token,
+                    authResult.data.data.refreshToken
                 )
             );
         }
     };
+
+    if (isLoading) {
+        return <CustomeActivityIndicator visible={isLoading} />
+    }
 
     return (
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>

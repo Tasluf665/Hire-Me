@@ -13,7 +13,7 @@ import { ScaledSheet } from "react-native-size-matters";
 import LottieView from "lottie-react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { authenticate, setLoading } from "../../store/authSlice";
-import { SignIn, ForgotPassword } from "../../services/authService";
+import { SignIn, ForgotPassword, GoogleLogin } from "../../services/authService";
 import { router } from "expo-router";
 import {
     GoogleSignin,
@@ -53,22 +53,36 @@ export default function SignInScreen(props) {
         try {
             await GoogleSignin.hasPlayServices();
             const userInfo = await GoogleSignin.signIn();
-            console.log("Google User Info:", userInfo);
 
-            Alert.alert("Google Sign-In Success", `Welcome ${userInfo.data.user.name}`);
+            if (userInfo.data.idToken) {
+                dispatch(setLoading(true));
+                const result = await GoogleLogin(userInfo.data.idToken, userInfo.data.user.email);
+                dispatch(setLoading(false));
+
+                if (result.error) {
+                    Alert.alert("Google Login Failed", result.error);
+                } else {
+                    dispatch(
+                        authenticate(
+                            result.data._id,
+                            result.data.token,
+                            result.data.refreshToken
+                        )
+                    );
+                    // Navigation handled by auth slice/layout redirection
+                }
+            }
 
         } catch (error) {
             console.log("Google Sign-In Error:", error);
+            dispatch(setLoading(false));
             if (error.code === statusCodes.SIGN_IN_CANCELLED) {
                 // user cancelled the login flow
             } else if (error.code === statusCodes.IN_PROGRESS) {
-                // operation (e.g. sign in) is in progress already
                 Alert.alert("Sign in in progress");
             } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-                // play services not available or outdated
                 Alert.alert("Play services not available");
             } else {
-                // some other error happened
                 Alert.alert("Google Sign-In Error", error.message);
             }
         }

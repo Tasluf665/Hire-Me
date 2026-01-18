@@ -7,6 +7,7 @@ const config = require("config");
 const Joi = require("joi");
 const axios = require("axios");
 
+const { OAuth2Client } = require("google-auth-library");
 const { User, validateUser, UserAddress } = require("../models/user");
 const { Order } = require("../models/order");
 const auth = require("../middleware/auth");
@@ -398,62 +399,61 @@ router.post("/google", async (req, res) => {
   // If validation fails, return a 400 Bad Request error response with the validation error message
   if (error) return res.status(400).send({ error: error.details[0].message });
 
-  // Make a request to Google's tokeninfo endpoint to verify the access token
-  const result = await axios.get(
-    `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${req.body.accessToken}`
-  );
-  console.log("🚀 ~ file: users.js:394 ~ router.post ~ result:", result);
+  const client = new OAuth2Client(config.get("APP_ANDROID_CLIENT_ID")); // Can use any of the IDs here for initialization
 
-  // If an error is present in the result, return a 401 Unauthorized error response
-  if (result.error)
+  try {
+    // Verify the ID Token
+    const ticket = await client.verifyIdToken({
+      idToken: req.body.idToken,
+      audience: [
+        config.get("APP_ANDROID_CLIENT_ID"),
+        config.get("APP_IOS_CLIENT_ID"),
+        config.get("APP_WEB_CLIENT_ID")
+      ],
+    });
+    const payload = ticket.getPayload();
+    const { email, name, sub: googleId, picture } = payload;
+
+    // Find a user with the provided email in the database
+    let user = await User.findOne({ email: email });
+
+    // If no user is found, create a new user with data from the request body and mark them as verified
+    if (!user) {
+      user = new User({
+        name: name,
+        email: email,
+        googleId: googleId,
+        verified: true
+      });
+      await user.save();
+    }
+
+    // If the user doesn't have a Google ID, set it from the payload
+    if (!user.googleId) {
+      user.googleId = googleId;
+      await user.save();
+    }
+
+    // Generate an authentication token and a refresh token for the user
+    const token = user.generateAuthToken();
+    const refreshToken = user.generateRefreshToken();
+
+    // Send a success response with user information, authentication token, and refresh token
+    res.send({
+      success: "Google Login Successfully",
+      data: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        token: token,
+        refreshToken: refreshToken,
+      },
+    });
+
+  } catch (err) {
+    console.log("Google Auth Error:", err);
     return res.status(401).send({ error: "Unauthorized Google auth token" });
-
-  // Check if the email from the result matches the email in the request body
-  if (result.data.email !== req.body.email)
-    return res.status(401).send({ error: "Unauthorized Google auth token" });
-
-  // Check if the "issued_to" field of the result matches valid Google client IDs from the configuration
-  if (
-    result.data.issued_to !== config.get("REACT_NATIVE_APP_GOOGLE_CLIENT_ID") &&
-    result.data.issued_to !==
-    config.get("REACT_NATIVE_APP_GOOGLE_STANDAL_ONE_CLIENT_ID") &&
-    result.data.issued_to !== config.get("REACT_APP_GOOGLE_CLIENT_ID")
-  )
-    return res.status(401).send({ error: "Unauthorized Google auth token" });
-
-  // Find a user with the provided email in the database
-  let user = await User.findOne({ email: req.body.email });
-
-  // If no user is found, create a new user with data from the request body and mark them as verified
-  if (!user) {
-    user = new User(
-      _.pick(req.body, ["name", "email", "googleId", "expoPushToken"])
-    );
-    user.verified = true;
-    await user.save();
   }
-
-  // If the user doesn't have a Google ID, set it from the request body and save the user
-  if (!user.googleId) {
-    user.googleId = req.body.googleId;
-    await user.save();
-  }
-
-  // Generate an authentication token and a refresh token for the user
-  const token = user.generateAuthToken();
-  const refreshToken = user.generateRefreshToken();
-
-  // Send a success response with user information, authentication token, and refresh token
-  res.send({
-    success: "Google Login Successfully",
-    data: {
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      token: token,
-      refreshToken: refreshToken,
-    },
-  });
 });
 
 //For user Number
@@ -489,10 +489,7 @@ router.get(
 function validateGoogleUser(user) {
   const schema = Joi.object({
     email: Joi.string().min(1).max(255).required().email(),
-    name: Joi.string().min(1).max(255).required(),
-    expoPushToken: Joi.string().min(1).max(255),
-    googleId: Joi.string().min(5).max(255).required(),
-    accessToken: Joi.string().min(5).max(255).required(),
+    idToken: Joi.string().required(),
   });
 
   return schema.validate(user);

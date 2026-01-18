@@ -81,3 +81,30 @@ export const ForgotPassword = async (email) => {
         return { error: error.message };
     }
 };
+
+export const GoogleLogin = async (idToken, email) => {
+    try {
+        const response = await fetch(`${API_URL}/api/users/google`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            // We only STRICTLY need idToken, but sending email/name acts as a fallback or for initial validation
+            body: JSON.stringify({
+                idToken: idToken,
+                email: email,
+                // name: name // Validation in backend might expect this, but we commented it out to rely on token
+            })
+        });
+
+        const resData = await response.json();
+
+        if (!response.ok) {
+            return { error: resData.message || resData.error || 'Something went wrong!' };
+        }
+
+        return resData;
+    } catch (error) {
+        return { error: error.message };
+    }
+};

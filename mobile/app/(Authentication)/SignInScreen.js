@@ -15,6 +15,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { authenticate, setLoading } from "../../store/authSlice";
 import { SignIn, ForgotPassword } from "../../services/authService";
 import { router } from "expo-router";
+import {
+    GoogleSignin,
+    statusCodes,
+} from "@react-native-google-signin/google-signin";
+import { APP_WEB_CLIENT_ID, APP_IOS_CLIENT_ID } from "@env";
 
 import SocialButton from "../../Components/SocialButton";
 import PasswordTextInput from "../../Components/PasswordTextInput";
@@ -35,6 +40,39 @@ export default function SignInScreen(props) {
             emailInput.current.focus();
         }
     }, [emailInput]);
+
+    React.useEffect(() => {
+        GoogleSignin.configure({
+            webClientId: APP_WEB_CLIENT_ID,
+            iosClientId: APP_IOS_CLIENT_ID,
+            offlineAccess: true,
+        });
+    }, []);
+
+    const signInWithGoogle = async () => {
+        try {
+            await GoogleSignin.hasPlayServices();
+            const userInfo = await GoogleSignin.signIn();
+            console.log("Google User Info:", userInfo);
+
+            Alert.alert("Google Sign-In Success", `Welcome ${userInfo.data.user.name}`);
+
+        } catch (error) {
+            console.log("Google Sign-In Error:", error);
+            if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+                // user cancelled the login flow
+            } else if (error.code === statusCodes.IN_PROGRESS) {
+                // operation (e.g. sign in) is in progress already
+                Alert.alert("Sign in in progress");
+            } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+                // play services not available or outdated
+                Alert.alert("Play services not available");
+            } else {
+                // some other error happened
+                Alert.alert("Google Sign-In Error", error.message);
+            }
+        }
+    };
 
     const handleEmailSubmittion = async () => {
         dispatch(setLoading(true));
@@ -122,7 +160,7 @@ export default function SignInScreen(props) {
 
                     <SocialButton
                         social="google"
-                        onPress={() => promptAsync()}
+                        onPress={signInWithGoogle}
                         color={Colors.GoogleColor}
                         text="Continue with Google"
                     />

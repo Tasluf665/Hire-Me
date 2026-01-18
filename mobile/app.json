@@ -14,7 +14,8 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tasluf.hireme"
     },
     "android": {
       "adaptiveIcon": {
@@ -40,6 +41,12 @@
             "./assets/fonts/RobotoSlab-Regular.ttf",
             "./assets/fonts/RobotoSlab-SemiBold.ttf"
           ]
+        }
+      ],
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.339408929728-fsnecfnekhjhr49ftk11mbnt7d70tjcj"
         }
       ]
     ],

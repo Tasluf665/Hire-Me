@@ -13,7 +13,8 @@ import { ScaledSheet } from "react-native-size-matters";
 import LottieView from "lottie-react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { authenticate, setLoading } from "../../store/authSlice";
-import { SignIn } from "../../services/authService";
+import { SignIn, ForgotPassword } from "../../services/authService";
+import { router } from "expo-router";
 
 import SocialButton from "../../Components/SocialButton";
 import PasswordTextInput from "../../Components/PasswordTextInput";
@@ -45,9 +46,9 @@ export default function SignInScreen(props) {
         } else {
             dispatch(
                 authenticate(
-                    authResult.data.data._id,
-                    authResult.data.data.token,
-                    authResult.data.data.refreshToken
+                    authResult.data._id,
+                    authResult.data.token,
+                    authResult.data.refreshToken
                 )
             );
         }
@@ -91,7 +92,7 @@ export default function SignInScreen(props) {
                         <TouchableOpacity
                             activeOpacity={0.6}
                             onPress={() => {
-                                props.navigation.navigate("SignUpWithEmail");
+                                router.push("SignUpScreen");
                             }}
                         >
                             <Text style={styles.text}>New User ?</Text>
@@ -102,7 +103,7 @@ export default function SignInScreen(props) {
                                 if (!email) {
                                     Alert.alert("Enter email address to Reset Password");
                                 } else {
-                                    const result = await AuthHelper.ForgotPassword(email);
+                                    const result = await ForgotPassword(email);
                                     Alert.alert(result.success ? result.success : result.error);
                                 }
                             }}

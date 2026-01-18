@@ -14,7 +14,8 @@ const index = () => {
     return null;
   }
 
-  return <Redirect href={"/WelcomeScreen"} />;
+  // Layout handles redirection based on auth state
+  return null;
 };
 
 export default index;

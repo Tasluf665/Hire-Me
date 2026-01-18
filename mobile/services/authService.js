@@ -21,7 +21,7 @@ export const SignIn = async (email, password) => {
         }
 
         const resData = await response.json();
-        return { data: resData };
+        return { data: resData.data };
 
     } catch (error) {
         return { error: error.message };
@@ -48,7 +48,35 @@ export const SignUp = async (name, email, password) => {
         }
 
         const resData = await response.json();
-        return { data: resData };
+        return { data: resData.data };
+    } catch (error) {
+        return { error: error.message };
+    }
+};
+
+
+
+export const ForgotPassword = async (email) => {
+    try {
+        const response = await fetch(`${API_URL}/api/auth/forgot-password`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email
+            })
+        });
+
+        const resData = await response.json();
+
+        if (!response.ok) {
+            return { error: resData.message || resData.error || 'Something went wrong!' };
+        }
+
+        console.log(resData);
+
+        return resData;
     } catch (error) {
         return { error: error.message };
     }

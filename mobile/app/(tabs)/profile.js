@@ -1,9 +1,19 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableNativeFeedback } from "react-native";
+import { useDispatch } from "react-redux";
+import { logout } from "../../store/authSlice";
+import Colors from "../../Constant/Colors";
 
 export default function ProfileScreen() {
+    const dispatch = useDispatch();
+
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Profile Screen</Text>
+            <TouchableNativeFeedback onPress={() => dispatch(logout())}>
+                <View style={styles.button}>
+                    <Text style={styles.buttonText}>Logout</Text>
+                </View>
+            </TouchableNativeFeedback>
         </View>
     );
 }
@@ -17,5 +27,16 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 20,
         fontWeight: "bold",
+        marginBottom: 20,
     },
+    button: {
+        backgroundColor: Colors.Primary,
+        padding: 10,
+        borderRadius: 5,
+    },
+    buttonText: {
+        color: Colors.White,
+        fontWeight: "bold",
+        textAlign: "center",
+    }
 });

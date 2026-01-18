@@ -9,6 +9,7 @@ export default () => {
       <Stack.Screen name="WelcomeScreen" />
       <Stack.Screen name="SplashScreen" />
       <Stack.Screen name="SignInScreen" />
+      <Stack.Screen name="SignUpScreen" />
     </Stack>
   );
 };

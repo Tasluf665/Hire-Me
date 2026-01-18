@@ -1,5 +1,5 @@
 //Every time I have to refresh these tokens because they will be exparied after a period of time. To get new one I need to go to auth.rest and generate new tokens.
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTY2YzBiNGVkOGU1ZmM0N2E3MTNjZTciLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3NjgzNDgwNDksImV4cCI6MTc2ODM1MTY0OX0.hq8lwStrKpGfRsya6c8gPtr5soZ3DcwwMM1WjIfOOmU
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTY2YzBiNGVkOGU1ZmM0N2E3MTNjZTciLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3Njg3Njg3MTUsImV4cCI6MTc2ODc3MjMxNX0.igfoVo2cH-yxdhfxYeo7MSQBFm_nTTYbFDM2j2esfME
 
 ###
 
@@ -9,8 +9,8 @@ Content-Type: application/json
 
 
 {
-    "name": "Fan",
-    "iconName": "fan",
+    "name": "AC",
+    "iconName": "air-filter",
     "brandName": "Walton"
 }
 

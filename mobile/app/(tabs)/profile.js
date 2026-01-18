@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, TouchableNativeFeedback } from "react-native";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/authSlice";
 import Colors from "../../Constant/Colors";
+import CustomeFonts from "../../Constant/CustomeFonts";
 
 export default function ProfileScreen() {
     const dispatch = useDispatch();
@@ -26,8 +27,8 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 20,
-        fontWeight: "bold",
         marginBottom: 20,
+        fontFamily: CustomeFonts.RobotoSlabLight
     },
     button: {
         backgroundColor: Colors.Primary,

@@ -1,13 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { API_URL } from '@env'
-import customeFonts from '../../constent/customeFonts'
+
 
 export default function SplashScreen() {
 
     return (
         <View style={styles.container}  >
-            <Text style={{ fontFamily: customeFonts.RobotoSlab_Bold }}>SplashScreen</Text>
+            <Text>SplashScreen</Text>
             <Text>{API_URL}</Text>
         </View>
     )

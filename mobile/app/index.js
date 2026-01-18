@@ -14,7 +14,7 @@ const index = () => {
     return null;
   }
 
-  return <Redirect href={"/SplashScreen"} />;
+  return <Redirect href={"/WelcomeScreen"} />;
 };
 
 export default index;

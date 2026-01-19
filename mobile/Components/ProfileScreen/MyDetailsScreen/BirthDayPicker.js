@@ -28,7 +28,7 @@ export default function BirthDayPicker(props) {
 
       setDate(selectedDate);
 
-      dispatch(updateUserDetails({ name: "birthday", value: onlyDate }));
+      dispatch(updateUserDetails({ birthday: onlyDate }));
     } else {
       setShow(false);
     }

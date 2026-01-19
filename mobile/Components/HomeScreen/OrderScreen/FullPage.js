@@ -1,0 +1,219 @@
+import React, { useEffect } from "react";
+import { View, Button, Text } from "react-native";
+import { verticalScale, ScaledSheet } from "react-native-size-matters";
+import { Formik } from "formik";
+import * as Yup from "yup";
+import { router } from "expo-router";
+
+import Colors from "../../../Constant/Colors";
+import CustomeFonts from "../../../Constant/CustomeFonts";
+import InputField from "./InputField";
+import TopPart from "./TopPart";
+import DateTimeField from "./DateTimeField";
+import PickerField from "./PickerField";
+import CustomeActivityIndicator from "../../CustomeActivityIndicator";
+
+import { useSelector, useDispatch } from "react-redux";
+import { addOrder } from "../../../store/orderSlice";
+import { authRefreshToken } from "../../../store/authSlice";
+
+const FormSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(2, "Too Short!")
+    .max(70, "Too Long!")
+    .required("* Required"),
+  arrivalDate: Yup.string().required("* Required"),
+  arrivalTime: Yup.string().required("* Required"),
+  address: Yup.string().required("* Required"),
+  brand: Yup.string().required("* Required"),
+  model: Yup.string().required("* Required"),
+  problem: Yup.string().required("* Required"),
+  note: Yup.string().required("* Required"),
+  phone: Yup.string().required("* Required"),
+});
+
+const FullPage = ({ item, brands, productId }) => {
+
+  const address = useSelector((state) => state.user.address);
+  const defaultAddress = useSelector((state) => state.user.defaultAddress);
+  const defAddress = address.find((item) => item._id === defaultAddress);
+
+  const orderLoading = useSelector((state) => state.order.orderLoading);
+  const orderError = useSelector((state) => state.order.orderError);
+  const refresh_token = useSelector((state) => state.auth.refresh_token);
+
+  useEffect(() => {
+    if (orderError) {
+      console.log(
+        "🚀 ~ file: FullPage.js ~ line 47 ~ useEffect ~ orderError",
+        orderError
+      );
+      dispatch(authRefreshToken(refresh_token));
+    }
+  }, [orderError]);
+
+  const dispatch = useDispatch();
+
+  const initValue = {
+    name: defAddress ? defAddress.name : "",
+    address: defAddress
+      ? `${defAddress.address}, ${defAddress.area}, ${defAddress.city}, ${defAddress.region}`
+      : "",
+    brand: "",
+    model: "",
+    problem: "",
+    note: "",
+    phone: defAddress ? defAddress.phone : "",
+  };
+
+  return (
+    <View style={{ flex: 1, backgroundColor: Colors.Primary_Helper }}>
+      {orderLoading ? (
+        <CustomeActivityIndicator />
+      ) : (
+        <View style={styles.container}>
+          <TopPart iconName={item.iconName} />
+          <Formik
+            initialValues={initValue}
+            validationSchema={FormSchema}
+            onSubmit={(values, actions) => {
+              values.category = "Repairing";
+              values.categoryType = item.iconName;
+              values.statusDetails = "Your order is pending";
+              values.statusState = "Pending";
+
+              dispatch(addOrder(values));
+              actions.resetForm({ values: initValue });
+              router.back();
+            }}
+          >
+            {({
+              handleChange,
+              handleSubmit,
+              setFieldValue,
+              values,
+              errors,
+              touched,
+            }) => (
+              <>
+                <InputField
+                  name="Name"
+                  onChangeText={handleChange("name")}
+                  value={values.name}
+                />
+                {errors.name && touched.name ? (
+                  <Text style={styles.errorText}>{errors.name}</Text>
+                ) : null}
+
+                <DateTimeField
+                  values={values}
+                  errors={errors}
+                  touched={touched}
+                  setFieldValue={setFieldValue}
+                />
+                <InputField
+                  name="Address"
+                  onChangeText={handleChange("address")}
+                  value={values.address}
+                />
+                {errors.address && touched.address ? (
+                  <Text style={styles.errorText}>{errors.address}</Text>
+                ) : null}
+
+                <PickerField
+                  setFieldValue={setFieldValue}
+                  values={values}
+                  errors={errors}
+                  touched={touched}
+                  brands={brands}
+                  productId={productId}
+                />
+
+                <InputField
+                  name="Problem Detatils"
+                  styles={{
+                    height: verticalScale(100),
+                    textAlignVertical: "top",
+                  }}
+                  multiline={true}
+                  onChangeText={handleChange("problem")}
+                />
+                {errors.problem && touched.problem ? (
+                  <Text style={styles.errorText}>{errors.problem}</Text>
+                ) : null}
+                <View style={styles.rowContainer}>
+                  <View style={styles.date}>
+                    <InputField
+                      name="Spacial Note"
+                      onChangeText={handleChange("note")}
+                    />
+                    {errors.note && touched.note ? (
+                      <Text style={styles.errorText}>{errors.note}</Text>
+                    ) : null}
+                  </View>
+                  <View style={styles.date}>
+                    <InputField
+                      name="Contact Number"
+                      onChangeText={handleChange("phone")}
+                      value={values.phone}
+                    />
+                    {errors.phone && touched.phone ? (
+                      <Text style={styles.errorText}>{errors.phone}</Text>
+                    ) : null}
+                  </View>
+                </View>
+
+                <View style={styles.buttonContainer}>
+                  <Button
+                    title="Book Now"
+                    color={Colors.Primary}
+                    onPress={handleSubmit}
+                  />
+                </View>
+              </>
+            )}
+          </Formik>
+        </View>
+      )}
+    </View>
+  );
+};
+
+const styles = ScaledSheet.create({
+  container: {
+    marginVertical: "10@s",
+    marginHorizontal: "20@s",
+  },
+  title: {
+    fontFamily: "RobotoSlabSemiBold",
+    fontSize: "18@vs",
+    color: Colors.Primary,
+    marginVertical: "10@s",
+  },
+  rowContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  date: {
+    width: "45%",
+  },
+  text: {
+    fontFamily: "RobotoSlabSemiBold",
+    color: Colors.Secondary,
+    marginBottom: "10@vs",
+  },
+  buttonContainer: {
+    width: "40%",
+    alignSelf: "center",
+    marginTop: "30@vs",
+    marginBottom: "10@vs",
+  },
+  errorText: {
+    fontFamily: CustomeFonts.RobotoSlabRegular,
+    color: Colors.Red,
+    marginTop: 2,
+    marginLeft: 5,
+  },
+});
+
+export default FullPage;

@@ -5,6 +5,7 @@ import { scale } from "react-native-size-matters";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import CustomeFonts from "../../Constant/CustomeFonts";
+import { router } from "expo-router";
 
 function ServiceCard({ onPress, iconColor, backgroundColor, item }) {
 
@@ -12,6 +13,10 @@ function ServiceCard({ onPress, iconColor, backgroundColor, item }) {
         <TouchableWithoutFeedback
             onPress={() => {
                 onPress();
+                router.push({
+                    pathname: "/OrderFormMainScreen",
+                    params: { item: JSON.stringify(item) },
+                });
             }}
         >
             <View style={[styles.services, { backgroundColor }]}>

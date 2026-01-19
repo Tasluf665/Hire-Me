@@ -4,7 +4,7 @@ import { View, StyleSheet, StatusBar } from "react-native";
 import Colors from "../../Constant/Colors";
 
 import NameSelect from "../../Components/ProfileScreen/MyDetailsScreen/NameSelect";
-// import BirthDayPicker from "../../Components/ProfileScreen/MyDetailsScreen/BirthDayPicker";
+import BirthDayPicker from "../../Components/ProfileScreen/MyDetailsScreen/BirthDayPicker";
 import EmailSelect from "../../Components/ProfileScreen/MyDetailsScreen/EmailSelect";
 import GenderSelect from "../../Components/ProfileScreen/MyDetailsScreen/GenderSelect";
 import PhoneSelect from "../../Components/ProfileScreen/MyDetailsScreen/PhoneSelect";
@@ -20,7 +20,7 @@ export default function MyDetailsMainScreen(props) {
             <PhoneSelect />
             <EmailSelect />
             <GenderSelect />
-            {/* <BirthDayPicker /> */}
+            <BirthDayPicker />
         </View>
     );
 }

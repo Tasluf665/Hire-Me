@@ -59,7 +59,7 @@ Content-Type: application/json
 
 ###
 
-PATCH http://localhost:3001/api/orders/accept/696ea1bc4b7ad54462f3fff1
+PATCH http://localhost:3001/api/orders/accept/696ea2b74b7ad54462f4002d
 x-auth-token: {{token}}
 Content-Type: application/json
 
@@ -71,7 +71,7 @@ Content-Type: application/json
 
 ###
 
-PATCH http://localhost:3001/api/orders/assigned/696ea1bc4b7ad54462f3fff1
+PATCH http://localhost:3001/api/orders/assigned/696ea2b74b7ad54462f4002d
 x-auth-token: {{token}}
 Content-Type: application/json
 
@@ -83,12 +83,12 @@ Content-Type: application/json
 
 ###
 
-PATCH http://localhost:3001/api/orders/repaired/696ea1bc4b7ad54462f3fff1
+PATCH http://localhost:3001/api/orders/repaired/696ea2b74b7ad54462f4002d
 x-auth-token: {{token}}
 Content-Type: application/json
 
 {
-    "amount": 10,
+    "amount": 100,
     "statusDetails": "Your product has been repaired. Please pay the bills",
     "statusState": "Product Repaired"
 }

@@ -5,7 +5,7 @@ export default () => {
         <Stack screenOptions={{ headerTitle: "Order" }}>
             <Stack.Screen name="OrderTrackMainScreen" />
             <Stack.Screen name="PaymentMainScreen" />
-            <Stack.Screen name="SSLCOMMERZ_Web_View" />
+            <Stack.Screen name="SSLCOMMERZ_Web_View" options={{ headerShown: false }} />
         </Stack>
     );
 };

@@ -6,6 +6,7 @@ import OffersCard from "./OffersCard";
 import OfferItems from "../../Constant/OfferItems";
 import HomeText from "./HomeText";
 import { router } from "expo-router";
+import { API_URL } from "@env";
 
 const Offers = (props) => {
     return (
@@ -17,7 +18,8 @@ const Offers = (props) => {
                         {OfferItems.map((item) => (
                             <OffersCard
                                 onPress={() => {
-                                    router.push("CommonWebView");
+                                    const targetUrl = `${API_URL}/WebView/offer.html`;
+                                    router.push({ pathname: "CommonWebView", params: { url: targetUrl } });
                                 }}
                                 imageName={item.imageName}
                                 titleText={item.titleText}

@@ -1,13 +1,14 @@
 import React from "react";
 import { WebView } from "react-native-webview";
 import { ScaledSheet } from "react-native-size-matters";
-import { API_URL } from "@env"
+
+import { useLocalSearchParams } from "expo-router";
 
 export default function CommonWebView() {
-    const targetUrl = `${API_URL}/WebView/offer.html`;
+    const { url } = useLocalSearchParams();
 
     return (
-        <WebView style={styles.container} source={{ uri: targetUrl }} />
+        <WebView style={styles.container} source={{ uri: url }} />
     );
 }
 

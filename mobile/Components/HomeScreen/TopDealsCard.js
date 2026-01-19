@@ -3,13 +3,15 @@ import { View, Image, TouchableWithoutFeedback } from "react-native";
 import { ScaledSheet } from "react-native-size-matters";
 import Colors from "../../Constant/Colors";
 import { router } from "expo-router";
+import { API_URL } from "@env";
 
 const TopDealsCard = (props) => {
     return (
         <View style={styles.container}>
             <TouchableWithoutFeedback
                 onPress={() => {
-                    router.push("CommonWebView");
+                    const targetUrl = `${API_URL}/WebView/offer.html`;
+                    router.push({ pathname: "CommonWebView", params: { url: targetUrl } });
                 }}
             >
                 <Image style={styles.image} source={props.imageName} />

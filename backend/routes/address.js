@@ -22,10 +22,11 @@ router.get(
   auth, // Authentication middleware
   asyncMiddleware(async (req, res) => {
     // Default to 'R184640' if no 'id' query parameter is provided.
-    if (!req.query.id) req.query.id = "R184640";
+    let id = req.query.id;
+    if (!id) id = "R184640";
 
     // Retrieve addresses from the database based on the 'parentId' query parameter.
-    const address = await Address.find({ parentId: req.query.id })
+    const address = await Address.find({ parentId: id })
       .sort("displayName")
       .select("-__v");
 

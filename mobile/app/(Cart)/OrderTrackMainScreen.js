@@ -118,7 +118,7 @@ export default function OrderTrackMainScreen() {
                                     color={Colors.Secondary}
                                     onPress={() =>
                                         router.push({
-                                            pathname: "/PaymentScreen",
+                                            pathname: "/PaymentMainScreen",
                                             params: { orderId: orderId },
                                         })
                                     }

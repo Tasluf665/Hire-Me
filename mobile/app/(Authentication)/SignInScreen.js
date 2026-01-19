@@ -15,10 +15,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { authenticate, setLoading } from "../../store/authSlice";
 import { SignIn, ForgotPassword, GoogleLogin } from "../../services/authService";
 import { router } from "expo-router";
-// import {
-//     GoogleSignin,
-//     statusCodes,
-// } from "@react-native-google-signin/google-signin";
+import {
+    GoogleSignin,
+    statusCodes,
+} from "@react-native-google-signin/google-signin";
 import { APP_WEB_CLIENT_ID, APP_IOS_CLIENT_ID } from "@env";
 
 import SocialButton from "../../Components/SocialButton";
@@ -41,13 +41,13 @@ export default function SignInScreen(props) {
         }
     }, [emailInput]);
 
-    // React.useEffect(() => {
-    //     GoogleSignin.configure({
-    //         webClientId: APP_WEB_CLIENT_ID,
-    //         iosClientId: APP_IOS_CLIENT_ID,
-    //         offlineAccess: true,
-    //     });
-    // }, []);
+    React.useEffect(() => {
+        GoogleSignin.configure({
+            webClientId: APP_WEB_CLIENT_ID,
+            iosClientId: APP_IOS_CLIENT_ID,
+            offlineAccess: true,
+        });
+    }, []);
 
     const signInWithGoogle = async () => {
         try {

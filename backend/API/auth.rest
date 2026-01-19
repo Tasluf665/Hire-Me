@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTY2YzBiNGVkOGU1ZmM0N2E3MTNjZTciLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3Njg3Njg3MTUsImV4cCI6MTc2ODc3MjMxNX0.igfoVo2cH-yxdhfxYeo7MSQBFm_nTTYbFDM2j2esfME
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTZkMmVkYWMyNjdiMzQ5Mzk0ZGFkMjMiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3Njg4NjAzNjcsImV4cCI6MTc2ODg2Mzk2N30.lx2M6deAMXoMyMcrt1mIVYrGpaCZBRq1NHTcrK8H7zc
 @refresh_token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTY2YzBiNGVkOGU1ZmM0N2E3MTNjZTciLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3NjgzNDQwNzEsImV4cCI6MTc2ODM2NTY3MX0.4PKYRryrO61OvjLBxk3By8Ke7D-fAgQdn24N8LkolaM
 
 ###
@@ -7,8 +7,8 @@ POST http://localhost:3001/api/auth/
 Content-Type: application/json
 
 {
-    "email": "rhymemorshed665@gmail.com",
-    "password": "12345"
+    "email": "rhymecanada665@gmail.com",
+    "password": "123456"
 }
 
 ###

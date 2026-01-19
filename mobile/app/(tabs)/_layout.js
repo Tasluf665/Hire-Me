@@ -21,6 +21,9 @@ export default function TabLayout() {
                     tabBarIcon: ({ color }) => (
                         <Ionicons name="cart" size={24} color={color} />
                     ),
+                    headerShown: true,
+                    headerTitle: "My Cart",
+                    headerTitleAlign: "center",
                 }}
             />
             <Tabs.Screen

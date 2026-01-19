@@ -1,5 +1,5 @@
 //Every time I have to refresh these tokens because they will be exparied after a period of time. To get new one I need to go to auth.rest and generate new tokens.
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTY2YzBiNGVkOGU1ZmM0N2E3MTNjZTciLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3NjgzNTMzMDcsImV4cCI6MTc2ODM1NjkwN30.6bWpvRBc4-lDLGc48BzMH2aO_0RvpZq9PuSclys01JM
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTZkMmVkYWMyNjdiMzQ5Mzk0ZGFkMjMiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3Njg4NjAzNjcsImV4cCI6MTc2ODg2Mzk2N30.lx2M6deAMXoMyMcrt1mIVYrGpaCZBRq1NHTcrK8H7zc
 
 
 GET http://localhost:3001/api/orders?pageNumber=1&pageSize=10
@@ -59,7 +59,7 @@ Content-Type: application/json
 
 ###
 
-PATCH http://localhost:3001/api/orders/accept/6966f1813ba5a71ff2f60913
+PATCH http://localhost:3001/api/orders/accept/696ea1bc4b7ad54462f3fff1
 x-auth-token: {{token}}
 Content-Type: application/json
 
@@ -71,7 +71,7 @@ Content-Type: application/json
 
 ###
 
-PATCH http://localhost:3001/api/orders/assigned/6966f1813ba5a71ff2f60913
+PATCH http://localhost:3001/api/orders/assigned/696ea1bc4b7ad54462f3fff1
 x-auth-token: {{token}}
 Content-Type: application/json
 
@@ -83,7 +83,7 @@ Content-Type: application/json
 
 ###
 
-PATCH http://localhost:3001/api/orders/repaired/6966ee3685f27867c023f650
+PATCH http://localhost:3001/api/orders/repaired/696ea1bc4b7ad54462f3fff1
 x-auth-token: {{token}}
 Content-Type: application/json
 

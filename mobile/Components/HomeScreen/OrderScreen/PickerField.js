@@ -105,7 +105,7 @@ const styles = ScaledSheet.create({
     marginTop: "18@vs",
   },
   text: {
-    fontFamily: "RobotoSlabSemiBold",
+    fontFamily: CustomeFonts.RobotoSlabSemiBold,
     color: Colors.Secondary,
     marginBottom: "10@vs",
   },

@@ -4,6 +4,7 @@ import { ScaledSheet, verticalScale } from "react-native-size-matters";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Colors from "../../../Constant/Colors";
+import CustomeFonts from "../../../Constant/CustomeFonts";
 
 export default function TopPart(props) {
   return (
@@ -31,13 +32,13 @@ const styles = ScaledSheet.create({
     alignItems: "center",
   },
   title: {
-    fontFamily: "RobotoSlabSemiBold",
+    fontFamily: CustomeFonts.RobotoSlabSemiBold,
     fontSize: "18@vs",
     color: Colors.Primary,
     marginVertical: "10@s",
   },
   description: {
-    fontFamily: "RobotoSlabRegular",
+    fontFamily: CustomeFonts.RobotoSlabRegular,
     color: Colors.Secondary,
   },
 });

@@ -3,6 +3,7 @@ import { View, Text, TextInput } from "react-native";
 import { ScaledSheet } from "react-native-size-matters";
 
 import Colors from "../../../Constant/Colors";
+import CustomeFonts from "../../../Constant/CustomeFonts";
 
 const InputField = (props) => {
   return (
@@ -26,7 +27,7 @@ const styles = ScaledSheet.create({
     marginTop: "18@vs",
   },
   text: {
-    fontFamily: "RobotoSlabSemiBold",
+    fontFamily: CustomeFonts.RobotoSlabSemiBold,
     color: Colors.Secondary,
     marginBottom: "10@vs",
   },

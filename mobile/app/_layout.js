@@ -27,8 +27,9 @@ function AppContent() {
     const inCommonGroup = segments[0] === "(commonScreen)";
     const inProfileGroup = segments[0] === "(Profile)";
     const inHomeGroup = segments[0] === "(Home)";
+    const inCartGroup = segments[0] === "(Cart)";
 
-    if (token && !inTabsGroup && !inCommonGroup && !inProfileGroup && !inHomeGroup) {
+    if (token && !inTabsGroup && !inCommonGroup && !inProfileGroup && !inHomeGroup && !inCartGroup) {
       router.replace("/(tabs)");
     } else if (!token && !inAuthGroup) {
       router.replace("/(Authentication)/WelcomeScreen");
@@ -47,6 +48,7 @@ function AppContent() {
       <Stack.Screen name="(commonScreen)" />
       <Stack.Screen name="(Profile)" />
       <Stack.Screen name="(Home)" />
+      <Stack.Screen name="(Cart)" />
     </Stack>
   );
 }

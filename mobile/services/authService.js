@@ -1,5 +1,7 @@
 // TODO: Replace with your actual backend URL
 import { API_URL } from "@env";
+import * as Device from "expo-device";
+import * as Notifications from "expo-notifications";
 
 export const SignIn = async (email, password) => {
     console.log(API_URL);
@@ -29,6 +31,7 @@ export const SignIn = async (email, password) => {
 };
 
 export const SignUp = async (name, email, password) => {
+
     try {
         const response = await fetch(`${API_URL}/api/users/`, {
             method: 'POST',
@@ -38,7 +41,7 @@ export const SignUp = async (name, email, password) => {
             body: JSON.stringify({
                 name: name,
                 email: email,
-                password: password
+                password: password,
             })
         });
 
@@ -89,11 +92,9 @@ export const GoogleLogin = async (idToken, email) => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            // We only STRICTLY need idToken, but sending email/name acts as a fallback or for initial validation
             body: JSON.stringify({
                 idToken: idToken,
                 email: email,
-                // name: name // Validation in backend might expect this, but we commented it out to rely on token
             })
         });
 
@@ -108,3 +109,35 @@ export const GoogleLogin = async (idToken, email) => {
         return { error: error.message };
     }
 };
+
+export async function registerForPushNotificationsAsync() {
+    let token;
+    if (Device.isDevice) {
+        const { status: existingStatus } =
+            await Notifications.getPermissionsAsync();
+        let finalStatus = existingStatus;
+        if (existingStatus !== "granted") {
+            const { status } = await Notifications.requestPermissionsAsync();
+            finalStatus = status;
+        }
+        if (finalStatus !== "granted") {
+            alert("Failed to get push token for push notification!");
+            return;
+        }
+        token = (await Notifications.getExpoPushTokenAsync()).data;
+        console.log(token);
+    } else {
+        alert("Must use physical device for Push Notifications");
+    }
+
+    if (Platform.OS === "android") {
+        Notifications.setNotificationChannelAsync("default", {
+            name: "default",
+            importance: Notifications.AndroidImportance.MAX,
+            vibrationPattern: [0, 250, 250, 250],
+            lightColor: "#FF231F7C",
+        });
+    }
+
+    return token;
+}

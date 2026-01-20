@@ -84,6 +84,7 @@ export default function SignInScreen(props) {
                 Alert.alert("Play services not available");
             } else {
                 Alert.alert("Google Sign-In Error", error.message);
+                console.log(error);
             }
         }
     };

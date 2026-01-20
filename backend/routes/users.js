@@ -423,7 +423,8 @@ router.post("/google", async (req, res) => {
         name: name,
         email: email,
         googleId: googleId,
-        verified: true
+        verified: true,
+        expoPushToken: req.body.expoPushToken,
       });
       await user.save();
     }
@@ -447,6 +448,7 @@ router.post("/google", async (req, res) => {
         email: user.email,
         token: token,
         refreshToken: refreshToken,
+        expoPushToken: user.expoPushToken,
       },
     });
 
@@ -490,6 +492,7 @@ function validateGoogleUser(user) {
   const schema = Joi.object({
     email: Joi.string().min(1).max(255).required().email(),
     idToken: Joi.string().required(),
+    expoPushToken: Joi.string(),
   });
 
   return schema.validate(user);

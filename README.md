@@ -30,7 +30,7 @@ Welcome to the documentation for the Hire-Me app, an Android application built w
 6. **Push Notifications**:
    - Real-time push notifications keep users informed and engaged.
 
-### [Backend Server]
+### Backend Server
 
 1. **Login with Password**:
    - Secure login functionality using username and password.
@@ -71,43 +71,25 @@ Welcome to the documentation for the Hire-Me app, an Android application built w
 5. **Login with Password or Google Login**:
    - Multiple login options for administrators.
 
-## Getting Started
-
-To use the Repair app, follow these steps:
-
-1. **Download Expo Go App**: Install the Expo Go app from the Google Play Store.
-
-2. **Access the App**: Visit the following URL using the Expo Go app: [Repair Expo App](https://expo.dev/@tasluf/repair-nodejs?serviceType=classic&distribution=expo-go)
-
-3. **Scan the QR Code**: Use the Expo Go app to scan the QR code provided.
-
-4. **Wait for Installation**: Wait for a minute as the app is loaded.
-
-5. **Ready to Go**: You're now ready to use the Repair app and explore its features.
-
 ## Watch App Overview
 
 [![Demo Video](https://img.youtube.com/vi/xaVHDgGFC1s/0.jpg)](https://www.youtube.com/watch?v=xaVHDgGFC1s)
-
 ## Screenshots
 <div>
-<img src="https://github.com/Tasluf665/Repair_Android_With_Nodejs/blob/master/Android%20App%20Pic/photo_2022-11-09_12-31-50.jpg" width="200px" height="400px">
-<img src="https://github.com/Tasluf665/Repair_Android_With_Nodejs/blob/master/Android%20App%20Pic/photo_2022-11-09_12-31-54.jpg" width="200px" height="400px">
-<img src="https://github.com/Tasluf665/Repair_Android_With_Nodejs/blob/master/Android%20App%20Pic/photo_2022-11-09_12-31-56.jpg" width="200px" height="400px">
-<img src="https://github.com/Tasluf665/Repair_Android_With_Nodejs/blob/master/Android%20App%20Pic/photo_2022-11-09_12-31-58.jpg" width="200px" height="400px">
-<img src="https://github.com/Tasluf665/Repair_Android_With_Nodejs/blob/master/Android%20App%20Pic/photo_2022-11-09_12-31-59.jpg" width="200px" height="400px">
-<img src="https://github.com/Tasluf665/Repair_Android_With_Nodejs/blob/master/Android%20App%20Pic/photo_2022-11-09_12-32-01.jpg" width="200px" height="400px">
-<img src="https://github.com/Tasluf665/Repair_Android_With_Nodejs/blob/master/Android%20App%20Pic/photo_2022-11-09_12-32-03.jpg" width="200px" height="400px">
-<img src="https://github.com/Tasluf665/Repair_Android_With_Nodejs/blob/master/Android%20App%20Pic/photo_2022-11-09_12-32-05%20(2).jpg" width="200px" height="400px">
-<img src="https://github.com/Tasluf665/Repair_Android_With_Nodejs/blob/master/Android%20App%20Pic/photo_2022-11-09_12-32-07%20(2).jpg" width="200px" height="400px">
-<img src="https://github.com/Tasluf665/Repair_Android_With_Nodejs/blob/master/Android%20App%20Pic/photo_2022-11-09_12-32-12.jpg" width="200px" height="400px">
-<img src="https://github.com/Tasluf665/Repair_Android_With_Nodejs/blob/master/Android%20App%20Pic/photo_2022-11-09_12-32-20.jpg" width="200px" height="400px">
-<img src="https://github.com/Tasluf665/Repair_Android_With_Nodejs/blob/master/Android%20App%20Pic/photo_2022-11-09_12-32-22.jpg" width="200px" height="400px">
+<img src="https://github.com/Tasluf665/Hire-Me/blob/main/mobile/assets/Android%20App%20Pic/photo_2022-11-09_12-31-50.jpg" width="200px" height="400px">
+<img src="https://github.com/Tasluf665/Hire-Me/blob/main/mobile/assets/Android%20App%20Pic/photo_2022-11-09_12-31-54.jpg" width="200px" height="400px">
+<img src="https://github.com/Tasluf665/Hire-Me/blob/main/mobile/assets/Android%20App%20Pic/photo_2022-11-09_12-31-56.jpg" width="200px" height="400px">
+<img src="https://github.com/Tasluf665/Hire-Me/blob/main/mobile/assets/Android%20App%20Pic/photo_2022-11-09_12-31-58.jpg" width="200px" height="400px">
+<img src="https://github.com/Tasluf665/Hire-Me/blob/main/mobile/assets/Android%20App%20Pic/photo_2022-11-09_12-31-59.jpg" width="200px" height="400px">
+<img src="https://github.com/Tasluf665/Hire-Me/blob/main/mobile/assets/Android%20App%20Pic/photo_2022-11-09_12-32-01.jpg" width="200px" height="400px">
+<img src="https://github.com/Tasluf665/Hire-Me/blob/main/mobile/assets/Android%20App%20Pic/photo_2022-11-09_12-32-03.jpg" width="200px" height="400px">
+<img src="https://github.com/Tasluf665/Hire-Me/blob/main/mobile/assets/Android%20App%20Pic/photo_2022-11-09_12-32-05%20(2).jpg" width="200px" height="400px">
+<img src="https://github.com/Tasluf665/Hire-Me/blob/main/mobile/assets/Android%20App%20Pic/photo_2022-11-09_12-32-07%20(2).jpg" width="200px" height="400px">
+<img src="https://github.com/Tasluf665/Hire-Me/blob/main/mobile/assets/Android%20App%20Pic/photo_2022-11-09_12-32-12.jpg" width="200px" height="400px">
+<img src="https://github.com/Tasluf665/Hire-Me/blob/main/mobile/assets/Android%20App%20Pic/photo_2022-11-09_12-32-20.jpg" width="200px" height="400px">
+<img src="https://github.com/Tasluf665/Hire-Me/blob/main/mobile/assets/Android%20App%20Pic/photo_2022-11-09_12-32-22.jpg" width="200px" height="400px">
 </div>
 
-## Expo App Store
-
-You can also find the Repair app on the Expo app store. Simply scan the barcode, and you'll be able to use the app via the Expo app.
 
 ## Research Paper
 

@@ -95,7 +95,7 @@ Welcome to the documentation for the Hire-Me app, an Android application built w
 
 For detailed information about each section of this project, please refer to our full research paper:
 
-[![Research Paper](https://img.shields.io/badge/Research%20Paper-PDF-blue)](https://github.com/Tasluf665/Repair_Android_With_Nodejs/blob/master/assets/Final%20Defence%20Report.pdf)
+[![Research Paper](https://img.shields.io/badge/Research%20Paper-PDF-blue)](https://github.com/Tasluf665/Hire-Me/blob/main/mobile/assets/Final%20Defence%20Report.pdf)
 
 The research paper provides comprehensive insights into the project, including design, architecture, implementation details, and more.
 
